@@ -1,9 +1,12 @@
-﻿namespace BurgerShop.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BurgerShop.Models
 {
     public class Burger
     {
+        [Key]
         public Guid Id { get; set; }
-        public BurgerName Name { get; set; }
+        public BurgerName? Name { get; set; }
         public int Picles { get; set; }
         public int Tomatos { get; set; }
         public int Bacon { get; set; }
