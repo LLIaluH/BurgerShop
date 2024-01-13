@@ -1,9 +1,30 @@
+using BurgerShop.AppClases;
+using BurgerShop.Models;
+using Microsoft.EntityFrameworkCore;
+
+/*
+using (var ctx = new BurgerShopContext())
+{
+    ctx.BurgerNames.Add(new BurgerName() { Name = "Чизбургер" });
+    ctx.BurgerNames.Add(new BurgerName() { Name = "Гамбургер" });
+    ctx.SaveChanges();
+}
+*/
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<BurgerShopContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
+
+if (args.Length == 1 && args[0].ToLower() == "seeddata")
+{
+    Seed.SeedData(app);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
