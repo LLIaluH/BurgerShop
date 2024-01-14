@@ -1,3 +1,5 @@
 .*
 .vs
 /BurgerShop/BurgerShop/bin
+./BurgerShop/obj
+/BurgerShop/bin
